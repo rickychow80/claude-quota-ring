@@ -16,40 +16,6 @@ cqrGetSettings((s) => {
 
 console.log("[ClaudeQuotaRing][bg] service worker started");
 
-function deepFind(obj, keyPattern, seen = new Set()) {
-  if (!obj || typeof obj !== "object" || seen.has(obj)) return null;
-  seen.add(obj);
-  for (const [k, v] of Object.entries(obj)) {
-    if (keyPattern.test(k) && v && typeof v === "object") {
-      const pct = extractPct(v);
-      if (pct !== null) return { pct, resetsAt: extractReset(v), raw: v };
-    }
-  }
-  for (const v of Object.values(obj)) {
-    if (v && typeof v === "object") {
-      const found = deepFind(v, keyPattern, seen);
-      if (found) return found;
-    }
-  }
-  return null;
-}
-
-function extractPct(obj) {
-  for (const [k, v] of Object.entries(obj)) {
-    if (/utilization|percentage|used_pct|percent/i.test(k) && typeof v === "number") {
-      return v <= 1 ? Math.round(v * 100) : Math.round(v);
-    }
-  }
-  return null;
-}
-
-function extractReset(obj) {
-  for (const [k, v] of Object.entries(obj)) {
-    if (/reset/i.test(k) && (typeof v === "string" || typeof v === "number")) return v;
-  }
-  return null;
-}
-
 // Exact shape of https://claude.ai/api/organizations/{orgId}/usage:
 //   { five_hour: { utilization, resets_at, ... }, seven_day: { utilization, resets_at, ... }, ... }
 // utilization is already 0-100 (not a fraction), resets_at is an ISO string.
