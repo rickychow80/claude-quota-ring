@@ -8,7 +8,7 @@ importScripts("i18n.js");
 const MAX_DEBUG_CANDIDATES = 8;
 const MAX_URL_LOG = 20;
 
-let cachedSettings = { language: CQR_DEFAULT_LANG, refreshIntervalMinutes: 5, verboseDebug: true };
+let cachedSettings = { language: CQR_DEFAULT_LANG, refreshIntervalMinutes: 5, verboseDebug: false };
 cqrGetSettings((s) => {
   cachedSettings = s;
   setupAlarm(s.refreshIntervalMinutes);

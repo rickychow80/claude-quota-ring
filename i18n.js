@@ -104,7 +104,7 @@ const CQR_I18N = {
 function cqrGetSettings(cb) {
   chrome.storage.local.get(["settings"], (res) => {
     const settings = Object.assign(
-      { language: CQR_DEFAULT_LANG, refreshIntervalMinutes: 5, verboseDebug: true },
+      { language: CQR_DEFAULT_LANG, refreshIntervalMinutes: 5, verboseDebug: false },
       res.settings || {}
     );
     cb(settings);
