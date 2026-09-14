@@ -12,6 +12,10 @@ A tiny Chrome extension that shows your [claude.ai](https://claude.ai) session (
 
 ---
 
+## Screenshot
+
+<p align="center"><img src="assets/screen-capture-1.png" width="360" alt="Claude Quota Ring popup showing session and weekly usage rings" /></p>
+
 ## How it actually gets the data
 
 Most "usage tracker" extensions ask you to paste an API key or OAuth token, or read your session cookies so *they* can call the API on your behalf. This one doesn't do either.

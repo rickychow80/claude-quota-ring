@@ -12,6 +12,10 @@
 
 ---
 
+## 截圖
+
+<p align="center"><img src="assets/screen-capture-1.png" width="360" alt="Claude Quota Ring 彈出視窗,顯示 session 與 weekly 用量環" /></p>
+
 ## 真正的取數方式
 
 大部分「用量追蹤」擴充功能會要你貼上 API key 或 OAuth token,或是讀你的 session cookie,讓*它們自己*代你去打 API。這個擴充功能兩者都不做。

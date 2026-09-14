@@ -12,6 +12,10 @@
 
 ---
 
+## 截图
+
+<p align="center"><img src="assets/screen-capture-1.png" width="360" alt="Claude Quota Ring 弹出窗口,显示 session 与 weekly 用量环" /></p>
+
 ## 真正的取数方式
 
 大部分「用量追踪」扩展会让你粘贴 API key 或 OAuth token,或者读取你的 session cookie,让*它们自己*代你去调用 API。这个扩展两者都不做。

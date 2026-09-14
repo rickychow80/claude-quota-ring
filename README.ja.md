@@ -12,6 +12,10 @@
 
 ---
 
+## スクリーンショット
+
+<p align="center"><img src="assets/screen-capture-1.png" width="360" alt="session と weekly の使用量リングを表示する Claude Quota Ring のポップアップ" /></p>
+
 ## 実際のデータ取得方法
 
 多くの「使用量トラッカー」拡張機能は、API キーや OAuth トークンの貼り付けを求めたり、セッション Cookie を読み取って *代わりに* API を呼び出したりします。この拡張機能はどちらも行いません。
