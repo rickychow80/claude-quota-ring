@@ -55,6 +55,12 @@ If you never visit claude.ai, the extension has nothing to show — because it i
 
 Because the data path never includes a credential extraction step, there's nothing to leak, nothing to expire out of sync with your actual session, and nothing to revoke.
 
+## Why only Claude?
+
+Because I only pay for Claude Pro! (Just kidding.)
+
+Other usage trackers cover many AI providers at once by having the background worker read your cookies and call each provider's API directly with your session — that's exactly the trust model this project avoids. Doing it safely instead — without ever touching a cookie or issuing our own authenticated request — means reverse-engineering and maintaining a separate undocumented usage endpoint per site, and most people don't run all of those services anyway. So this project stays scoped to claude.ai: one thing done without asking for any trust, instead of many things done by asking for more of it.
+
 ## Features
 
 - 🍩 Dual-ring toolbar icon — outer ring = session (5h), inner ring = weekly (7d), color-coded (turns red near the limit)
