@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Claude Quota Ring",
+  "version": "0.1.0",
+  "description": "Dual-ring toolbar badge for your Claude.ai session/weekly usage. Reads only your own browser's existing network traffic — no token, no cookie scraping.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage", "alarms"],
+  "host_permissions": ["https://claude.ai/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://claude.ai/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://claude.ai/*"],
+      "js": ["fetch-hook.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    }
+  ]
+}

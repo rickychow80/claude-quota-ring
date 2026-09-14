@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1 data-i18n="options_title">Settings</h1>
+
+    <div class="field">
+      <label for="langSelect" data-i18n="options_language_label">Language</label>
+      <select id="langSelect"></select>
+    </div>
+
+    <div class="field">
+      <label for="intervalInput" data-i18n="options_interval_label">Refresh interval (minutes)</label>
+      <input id="intervalInput" type="number" min="1" max="60" step="1" />
+    </div>
+
+    <div class="field row-field">
+      <input id="debugCheckbox" type="checkbox" />
+      <label for="debugCheckbox" data-i18n="options_debug_label">Show detailed capture log</label>
+    </div>
+
+    <button id="saveBtn" data-i18n="options_save">Save</button>
+    <span id="savedMsg" class="saved-msg" data-i18n="options_saved"></span>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="header">
+    <span class="title">Claude Quota Ring</span>
+    <div class="tabs">
+      <button class="tab active" data-tab="main" data-i18n="tab_main">用量</button>
+      <button class="tab" data-tab="debug" data-i18n="tab_debug">Debug</button>
+      <button id="settingsBtn" class="gear-btn" title="Settings">⚙</button>
+    </div>
+  </div>
+
+  <div id="main" class="panel active">
+    <svg viewBox="0 0 120 120" class="rings">
+      <circle cx="60" cy="60" r="50" class="track" stroke-width="8" />
+      <circle id="ringSession" cx="60" cy="60" r="50" stroke-width="8" />
+      <circle cx="60" cy="60" r="34" class="track" stroke-width="8" />
+      <circle id="ringWeekly" cx="60" cy="60" r="34" stroke-width="8" />
+    </svg>
+    <div class="legend">
+      <div class="row"><span class="dot outer"></span><span data-i18n="label_session">Session</span> <span id="sessionPct">--</span>%
+        <span class="reset" id="sessionReset"></span></div>
+      <div class="row"><span class="dot inner"></span><span data-i18n="label_weekly">Weekly</span> <span id="weeklyPct">--</span>%
+        <span class="reset" id="weeklyReset"></span></div>
+    </div>
+    <div id="emptyState" class="empty" data-i18n="empty_state"></div>
+    <div class="updated-row">
+      <button id="refreshBtn" class="refresh-icon-btn" data-i18n-title="refresh_title">↻</button>
+      <span class="updated" id="updatedAt"></span>
+    </div>
+  </div>
+
+  <div id="debug" class="panel">
+    <p class="hint" data-i18n="debug_hint_payload"></p>
+    <pre id="debugList"></pre>
+    <p class="hint" data-i18n="debug_hint_urls"></p>
+    <pre id="urlLogList"></pre>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
