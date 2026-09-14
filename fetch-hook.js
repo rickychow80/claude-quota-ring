@@ -6,6 +6,14 @@
   window.__CQR_DEBUG = window.__CQR_DEBUG || false;
   console.log("[ClaudeQuotaRing] fetch-hook.js loaded (MAIN world)");
 
+  // Handed to us by content.js (isolated world) via a DOM attribute set
+  // just before we run — see content.js for why this replaces a fixed
+  // "source" string. We read it once and immediately scrub it from the
+  // DOM so it isn't sitting there for other scripts to pick up later.
+  const CQR_TOKEN = document.documentElement.dataset.cqrToken;
+  delete document.documentElement.dataset.cqrToken;
+  if (!CQR_TOKEN) return; // content.js didn't run first — nothing safe to do
+
   // Precise now that we know the real shape of the usage endpoint response:
   // { five_hour: {...}, seven_day: {...}, ... }. Checking actual top-level
   // keys (instead of a loose keyword search across the whole stringified
@@ -23,7 +31,7 @@
 
   function reportPayload(url, payload) {
     if (window.__CQR_DEBUG) console.log("[ClaudeQuotaRing] candidate", url, payload);
-    window.postMessage({ source: "claude-quota-ring", type: "payload", url, payload }, "*");
+    window.postMessage({ source: CQR_TOKEN, type: "payload", url, payload }, "*");
   }
 
   // Records every /api/ URL we see a response for, even if we can't parse
@@ -32,7 +40,7 @@
   // nothing.
   function reportUrlSeen(url, contentType, snippet) {
     if (window.__CQR_DEBUG) console.log("[ClaudeQuotaRing] url seen", url, contentType);
-    window.postMessage({ source: "claude-quota-ring", type: "url", url, contentType, snippet }, "*");
+    window.postMessage({ source: CQR_TOKEN, type: "url", url, contentType, snippet }, "*");
   }
 
   // Fires once when the page sends what looks like a chat completion request.
@@ -40,7 +48,7 @@
   // we never read the completion content itself.
   function reportActivity() {
     if (window.__CQR_DEBUG) console.log("[ClaudeQuotaRing] activity (completion-like request)");
-    window.postMessage({ source: "claude-quota-ring", type: "activity" }, "*");
+    window.postMessage({ source: CQR_TOKEN, type: "activity" }, "*");
   }
 
   function looksLikeCompletion(url) {
