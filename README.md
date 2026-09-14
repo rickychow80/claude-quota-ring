@@ -16,6 +16,28 @@ A tiny Chrome extension that shows your [claude.ai](https://claude.ai) session (
 
 <p align="center"><img src="assets/screen-capture-1.png" width="360" alt="Claude Quota Ring popup showing session and weekly usage rings" /></p>
 
+## Why only Claude?
+
+Because I only pay for Claude Pro! (Just kidding.)
+
+Other usage trackers cover many AI providers at once by having the background worker read your cookies and call each provider's API directly with your session — that's exactly the trust model this project avoids. Doing it safely instead — without ever touching a cookie or issuing our own authenticated request — means reverse-engineering and maintaining a separate undocumented usage endpoint per site, and most people don't run all of those services anyway. So this project stays scoped to claude.ai: one thing done without asking for any trust, instead of many things done by asking for more of it.
+
+## Features
+
+- 🍩 Dual-ring toolbar icon — outer ring = session (5h), inner ring = weekly (7d), color-coded (turns red near the limit)
+- 🔄 Manual refresh button in the popup, with a spin animation that stops the instant fresh data lands
+- ⏱️ Automatic background refresh (configurable interval, default 5 min) plus a trigger shortly after you send a message
+- 🌐 Multi-language UI — English, 繁體中文, 简体中文, 日本語
+- ⚙️ Settings page for language, refresh interval, and debug verbosity
+- 🐞 Built-in Debug tab that shows exactly what was intercepted, for anyone who wants to verify the "no hidden network calls" claim themselves
+
+## Install
+
+1. Download or clone this repo
+2. `chrome://extensions` → enable **Developer mode**
+3. **Load unpacked** → select this folder
+4. Visit claude.ai and use it normally (or click the extension's refresh button)
+
 ## How it actually gets the data
 
 Most "usage tracker" extensions ask you to paste an API key or OAuth token, or read your session cookies so *they* can call the API on your behalf. This one doesn't do either.
@@ -54,28 +76,6 @@ If you never visit claude.ai, the extension has nothing to show — because it i
 | What it can see | Whatever it chooses to request | Only what claude.ai's own page already received |
 
 Because the data path never includes a credential extraction step, there's nothing to leak, nothing to expire out of sync with your actual session, and nothing to revoke.
-
-## Why only Claude?
-
-Because I only pay for Claude Pro! (Just kidding.)
-
-Other usage trackers cover many AI providers at once by having the background worker read your cookies and call each provider's API directly with your session — that's exactly the trust model this project avoids. Doing it safely instead — without ever touching a cookie or issuing our own authenticated request — means reverse-engineering and maintaining a separate undocumented usage endpoint per site, and most people don't run all of those services anyway. So this project stays scoped to claude.ai: one thing done without asking for any trust, instead of many things done by asking for more of it.
-
-## Features
-
-- 🍩 Dual-ring toolbar icon — outer ring = session (5h), inner ring = weekly (7d), color-coded (turns red near the limit)
-- 🔄 Manual refresh button in the popup, with a spin animation that stops the instant fresh data lands
-- ⏱️ Automatic background refresh (configurable interval, default 5 min) plus a trigger shortly after you send a message
-- 🌐 Multi-language UI — English, 繁體中文, 简体中文, 日本語
-- ⚙️ Settings page for language, refresh interval, and debug verbosity
-- 🐞 Built-in Debug tab that shows exactly what was intercepted, for anyone who wants to verify the "no hidden network calls" claim themselves
-
-## Install
-
-1. Download or clone this repo
-2. `chrome://extensions` → enable **Developer mode**
-3. **Load unpacked** → select this folder
-4. Visit claude.ai and use it normally (or click the extension's refresh button)
 
 ## Permissions explained
 
